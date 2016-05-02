@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home page</title>
+
+
+<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure.css">
+
+<link rel="stylesheet" href="/static/blog/css/layouts/home.css">
+
+
+</head>
+<body>
+
+<div class="splash-container">
+    <div class="splash">
+        <h1 class="splash-head">奇妙旅程</h1>
+        <p class="splash-subhead">
+            博客现在主要记录15年12月到16年4月之间的旅行
+        </p>
+        <p>
+            <a href="{% url 'home_page' 1 %}" class="pure-button button-success">点击进入</a>
+        </p>
+    </div>
+</div>
+
+</body>
+</html>

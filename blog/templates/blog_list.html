@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="blog">
+
+    <title>Bigxilu</title>
+
+    
+
+
+<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
+
+  
+    <!--[if lte IE 8]>
+        <link rel="stylesheet" href="/static/blog/css/layouts/side-menu-old-ie.css">
+    <![endif]-->
+    <!--[if gt IE 8]><!-->
+        <link rel="stylesheet" href="/static/blog/css/layouts/blog_list.css">
+    <!--<![endif]-->
+
+</head>
+<body>
+
+
+
+
+
+
+<div id="layout">
+
+    <div id="menu">
+        <div class="pure-menu">
+            <span class="pure-menu-heading" >Blog</span>
+
+            <ul class="pure-menu-list">
+                {% for category in category_list %}
+                <li class="pure-menu-item">
+                    <a class="pure-menu-link" href="{% url 'category' category.slug %}">
+                        {{ category.category }}
+                    </a>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+    <div id="main">
+        {% for article in blog_list %}
+            <div class="main-article">
+                <div class="header">
+                    <h1><a href="{% url 'blog_detail' article.pk %}" >{{ article.tittle }}</a></h1>
+                    <p>发表时间:{{ article.create_time }}</p>
+                    <p>
+                    {% for tag in article.tag.most_common %}
+                        标签:<a class="tag-button" href="{% url 'tag' tag.slug %}">{{ tag.name }}</a>
+                    {% endfor %}
+                    </p>
+                </div>
+                <div class="content">
+                    <p>
+                    {{ article.snippet }}......
+                    </p>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+    <div id="tag">
+        <div class="tag_header">
+            <a class="pure-button pure-button-primary" href="{% url 'tag_list' %}">标签</a>
+        </div>
+
+        <div class="tag_list">
+            {% for tag in tag_list %}
+                <a href="{% url 'tag' tag.slug %}">{{ tag.name }}</a>
+            {% endfor %}
+        </div>
+
+    </div>
+</div>
+
+
+</body>
+</html>
