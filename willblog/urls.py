@@ -19,6 +19,7 @@ from django.contrib.staticfiles import views
 from django.conf import settings
 from blog.views import home
 
+
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^ckeditor/', include('ckeditor_uploader.urls')),

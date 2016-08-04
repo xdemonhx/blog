@@ -24,14 +24,14 @@ class Category(models.Model):
 
 class Article(models.Model):
     category = models.ForeignKey(Category)
-    tittle = models.CharField(max_length=20, verbose_name='题目')
+    tittle = models.CharField(max_length=40, verbose_name='题目')
     content = RichTextUploadingField()
     snippet = models.TextField()
 
     create_time = models.DateTimeField()
     pub_time = models.DateTimeField()
     update_time = models.DateTimeField()
-
+    access_count = models.IntegerField(verbose_name='点击量',default=0)
     is_public = models.BooleanField()
     is_top = models.BooleanField()
 

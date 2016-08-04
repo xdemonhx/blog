@@ -14,8 +14,6 @@ class BlogListView(ListView):
 
 
     def get_queryset(self):
-        if 'page' in self.kwargs:
-            print self.kwargs
         if 'tag_slug' in self.kwargs:
             self.tag_slug = self.kwargs['tag_slug']
             return Article.objects.filter(tag__slug__in=[self.tag_slug])
@@ -35,7 +33,7 @@ class BlogListView(ListView):
 class BlogListPageView(BlogListView):
     template_name = 'blog_list_page.html'
     context_object_name = 'blog_list_page'
-    paginate_by = 3
+    paginate_by = 15
 
     def get_context_data(self, **kwargs):
         context = super(BlogListPageView, self).get_context_data(**kwargs)
@@ -48,7 +46,6 @@ class BlogListPageView(BlogListView):
         else:
             context['url_type'] = 'home'
             context['url_data'] = 1
-        print context['page_obj'].has_next(), context['paginator'].num_pages,context['url_type']
         return context
 
 
@@ -80,6 +77,12 @@ class BlogDetailView(DetailView):
     template_name = 'blog_detail.html'
     context_object_name = 'blog_detail'
     model = Article
+
+    def get_object(self,queryset=None):
+        obj = super(BlogDetailView,self).get_object()
+        obj.access_count +=1
+        obj.save()
+        return obj
 
     def get_context_data(self, **kwargs):
         context =super(BlogDetailView, self).get_context_data(**kwargs)

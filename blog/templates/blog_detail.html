@@ -3,10 +3,11 @@
 <head>
     <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Bigxilu">
+<meta name="description" content="大细路的博客">
 
-    <title>Bigxilu</title>
+    <title>大细路</title>
 
+<link rel="Shortcut Icon" href="/media/uploads/2016/05/10/icon.jpg">
 
 <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
 
@@ -29,14 +30,20 @@
 
 <div id="layout">
 
+<!--Meny toggle-->
+    <a href="#menu" id="menuLink" class="menu-link">
+        <span></span>
+    </a>
+
+
     <div id="menu">
         <div class="pure-menu">
-            <span class="pure-menu-heading" >Blog</span>
+            <a href="{% url 'home_page' 1%}"<span class="pure-menu-heading" >Blog</span></a>
 
             <ul class="pure-menu-list">
                 {% for category in category_list %}
                 <li class="pure-menu-item">
-                    <a class="pure-menu-link" href="{% url 'category' category.slug %}">
+                    <a class="pure-menu-link" href="{% url 'category_page' category.slug 1 %}">
                         {{ category.category }}
                     </a>
                 </li>
@@ -54,6 +61,7 @@
                 {% for tag in blog_detail.tag.most_common %}
                     标签:<a class="tag-button" href="{% url 'tag' tag.slug %}">{{ tag.name }}</a>
                 {% endfor %}
+                点击量:{{blog_detail.access_count}}
                 </p>
             </div>
             <div class="content">
@@ -64,23 +72,34 @@
         </div>
     </div>
 
-    <div id="tag">
-        <div class="tag_header">
-            <a class="pure-button pure-button-primary" href="{% url 'tag_list' %}">标签</a>
+    <div id="right-side">
+        <div id="tag">
+            <div class="tag_header">
+                <a class="pure-button pure-button-primary" href="{% url 'tag_list' %}">标签</a>
+            </div>
+ 
+            <div class="tag_list">
+                {% for tag in tag_list %}
+                    <a href="{% url 'tag' tag.slug %}">{{ tag.name }}</a>
+                {% endfor %}
+            </div>
         </div>
 
-        <div class="tag_list">
-            {% for tag in tag_list %}
-                <a href="{% url 'tag' tag.slug %}">{{ tag.name }}</a>
-            {% endfor %}
+        <div id="friendship">
+            <h>真正的友情链接</h>
+            <p>
+            <img src="/media/uploads/2016/05/10/webwxgeticon.jpg" style="height:30px;width:30px;" href=http://feichashao.com">
+            <a href="http://feichashao.com">肥叉烧同学</a>
+            </p>
         </div>
-
+ 
     </div>
 </div>
 
 
 
 
+<script src="/static/blog/js/ui.js"></script>
 
 </body>
 </html>

@@ -27,13 +27,9 @@ This is the parent `<div>` that contains the menu and the content area.
     position: relative;
     padding-left: 0;
 }
-    #layout.active {
-        position: relative;
-        left: 150px;
-    }
         #layout.active #menu {
             left: 150px;
-            width: 150px;
+            width: 200px;
         }
 
         #layout.active .menu-link {
@@ -49,7 +45,7 @@ appears on the left side of the page.
 */
 
 #menu {
-    margin-left: -150px; /* "#menu" width */
+    margin-left: -200px; /* "#menu" width */
     width: 200px;
     position: fixed;
     top: 0;
@@ -84,7 +80,7 @@ appears on the left side of the page.
     */
     #menu .pure-menu ul,
     #menu .pure-menu .menu-item-divided {
-        border-top: px solid #333;
+        border-top: 1px solid #333;
     }
         /*
         Change color of the anchor links on hover/focus.
@@ -173,11 +169,14 @@ small screens.
 
 /*-- main--*/
 #main {
-	margin-left:5%;
+	margin-left:9%;
   	margin-right:25%;
 
 }
 
+#main .header{
+    padding:0px;
+}
 #main .main-article{
 	border-bottom-style:solid;
   	padding-bottom:30px;
@@ -207,14 +206,15 @@ small screens.
 
 /*--tag--*/
 #tag{
+    margin:5%;
   	padding:10px;
 	padding-bottom: 60px;
   	border-style:solid;
   	border-color:#555555;
-	width:200px;
-  	position:fixed;
-  	top:5%;
-  	right:2%;
+}
+
+#friendship{
+    margin:5%;
 }
 
 /* -- Responsive Styles (Media Queries) ------------------------------------- */
@@ -225,7 +225,7 @@ Hides the menu at `48em`, but modify this based on your app's needs.
 @media (min-width: 48em) {
 
     .header,
-    .content {
+    .main {
         padding-left: 2em;
         padding-right: 2em;
     }
@@ -235,7 +235,7 @@ Hides the menu at `48em`, but modify this based on your app's needs.
         left: 0;
     }
     #menu {
-        left: 150px;
+        left: 200px;
     }
 
     .menu-link {
@@ -246,5 +246,22 @@ Hides the menu at `48em`, but modify this based on your app's needs.
 
     #layout.active .menu-link {
         left: 150px;
+    }
+    #right-side{
+        padding:10px;
+        padding-bottom:60px;
+        width:15%;
+        position:fixed;
+        top:5%;
+        right:2%;
+    }
+    #tag{
+        border-style:solid;
+        border-color:#555555;
+    }
+    #friendship{
+        margin-top:50px;
+        border-top-style:solid;
+        border-width:thin;
     }
 }
